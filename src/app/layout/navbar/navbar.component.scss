@@ -1,0 +1,53 @@
+@import '../../../scss/abstracts/variables';
+
+.navbar {
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 2rem $padding-sides;
+        height: 10rem;
+        width: 100%;
+
+        &-figure {
+            &-logo {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                &-img {
+                    width: 60%;
+                    fill: $color-highlight;
+                }
+            }
+
+            &-user-icon {
+                width: 100%;
+                text-align: end;
+                &-img {
+                    width: 6rem;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        &-input-search {
+            display: flex;
+            color: $color-white;
+            width: 100%;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            padding-left: 12%;
+            font-size: 1.7rem;
+            border: none;
+            background: url('../../../assets/images/lupa.png');
+            background-repeat: no-repeat;
+            background-size: 5%;
+            background-position-y: center;
+            background-position-x: 4%;
+            background-color: rgba(255, 255, 255, 0.229);
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

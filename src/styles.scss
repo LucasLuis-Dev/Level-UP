@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import "scss/base/base";
+@import "scss/abstracts/variables";
+@import "scss/abstracts/mixins";
+@import "scss/base/typografy";
+
+body {
+    overflow-x: hidden;
+    background-color: $color-background;
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+        background-color: rgba(255, 255, 255, 0.178);
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;        
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $color-highlight;    
+        border-radius: 2rem; 
+        height: 5rem;
+      }
+
+      @media screen and (min-width: 1600px) {
+        zoom: 125%;
+      }
+}

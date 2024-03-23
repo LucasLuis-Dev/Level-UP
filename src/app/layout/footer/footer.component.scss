@@ -1,0 +1,37 @@
+@import '../../../scss/abstracts/variables';
+.footer {
+    &__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        padding: 2rem $padding-sides;
+        background-color: $color-highlight;
+
+        &-figure {
+            &-logo {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                &-img {
+                    width: 60%;
+                    fill: $color-black;
+                }
+            }
+        }
+
+        &-list {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            list-style: none;
+
+            &-item {
+                &-link {
+                    &-img {
+                        width: 3.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
