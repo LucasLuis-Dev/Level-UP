@@ -1,0 +1,203 @@
+@import "../../../scss/abstracts/variables";
+@import "../../../scss/abstracts/mixins";
+
+.home {
+    &__container {
+       display: flex;
+       flex-direction: column;
+       padding: 0rem $padding-sides; 
+
+       &-carousel {
+            width: 100%;
+
+            &-img {
+                width: 100%;
+                border-radius: 1rem;
+            }
+
+       }
+
+       
+       &-title-box {
+            display: flex;
+            justify-content: space-between;
+            padding:  1rem 0;
+            color: $color-white;
+            border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
+            margin-bottom: 2rem;
+
+            &-text {
+                font-weight: 600;
+            }
+
+            
+
+            &-select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 25rem;
+                background-color: $color-highlight;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+                font-size: 1.6rem;
+                padding: 1rem;
+                color: $color-white;
+                font-weight: 600;
+                background-repeat: no-repeat;
+                background-position-x: 92%;
+                background-position-y: center;
+                background-size: 8%;
+            } 
+       }
+
+       &-filter-box {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 2rem;
+
+            &-button-filter {
+                @include button;
+                cursor: default;
+                width: fit-content;
+        
+                    &-svg {
+                        fill: white;
+                        width: 2rem;
+                    }
+            }
+
+            &-filter-options {
+                display: flex;
+                gap: 1rem;
+
+                &-select {
+                    -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 13rem;
+                background-color: $color-highlight;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+                font-size: 1.6rem;
+                padding: 1rem;
+                color: $color-white;
+                font-weight: 600;
+                background-repeat: no-repeat;
+                background-position-x: 92%;
+                background-position-y: center;
+                background-size: 8%;
+                }
+
+                &-input {
+                    border-radius: 1rem;
+                    background-color: $color-highlight;
+                    outline: none;
+                    border: none;
+                    padding: 1rem;
+                    color: $color-white;
+                    font-size: 1.6rem;
+                    &::placeholder {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            &-title-box {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding:  1rem 0;
+                gap: 1rem;
+                color: $color-white;
+                border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
+                margin-bottom: 2rem;
+    
+                &-text {
+                    font-weight: 600;
+                }
+    
+                
+    
+                &-select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    width: 100%;
+                    background-color: $color-highlight;
+                    border: none;
+                    outline: none;
+                    border-radius: 1rem;
+                    font-size: 1.9rem;
+                    padding: 2rem;
+                    color: $color-white;
+                    font-weight: 600;
+                    background-repeat: no-repeat;
+                    background-position-x: 92%;
+                    background-position-y: center;
+                    background-size: 8%;
+                } 
+           }
+
+           &-filter-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 2rem;
+
+            &-button-filter {
+                @include button;
+                cursor: default;
+                width: 100%;
+        
+                    &-svg {
+                        fill: white;
+                        width: 2rem;
+                    }
+            }
+
+            &-filter-options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+
+                &-select {
+                    -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 100%;
+                background-color: $color-highlight;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+                font-size: 1.6rem;
+                padding: 1rem;
+                color: $color-white;
+                font-weight: 600;
+                background-repeat: no-repeat;
+                background-position-x: 92%;
+                background-position-y: center;
+                background-size: 8%;
+                }
+
+                &-input {
+                    border-radius: 1rem;
+                    background-color: $color-highlight;
+                    outline: none;
+                    border: none;
+                    padding: 1rem;
+                    width: 100%;
+                    color: $color-white;
+                    font-size: 1.6rem;
+                    &::placeholder {
+                        color: $color-white;
+                    }
+                }
+            }
+        }
+        }
+        
+    }
+
+}
