@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
 
-  baseUrl = "https://www.freetogame.com/api/";
+  baseUrl = "http://localhost:4000/";
 
   constructor(private http: HttpClient) { }
 
@@ -24,24 +25,6 @@ export class GamesService {
 
   getGamesByOrder(order: string) {
     return this.http.get(this.baseUrl + "games/order/" + order)
-  }
-
-
-  saveGameToFavorites(game: any) {
-    let favorites: any[] = JSON.parse(localStorage.getItem('favoriteGames') || '[]');
-    favorites.push(game);
-    localStorage.setItem('favoriteGames', JSON.stringify(favorites));
-  }
-
-  removeGameFromFavorites(game: any) {
-    let favorites: any[] = JSON.parse(localStorage.getItem('favoriteGames') || '[]');
-    favorites = favorites.filter(favGame => favGame.id !== game.id); 
-    localStorage.setItem('favoriteGames', JSON.stringify(favorites));
-  }
-
-  isGameInFavorites(game: any): boolean {
-    let favorites: any[] = JSON.parse(localStorage.getItem('favoriteGames') || '[]');
-    return favorites.some(favGame => favGame.id === game.id); 
   }
   
 }
