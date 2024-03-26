@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
+import { environment } from '../../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
 
-  baseUrl = "http://localhost:4000/";
+  baseUrl = environment.PROXY_URL;
 
   constructor(private http: HttpClient) { }
 
