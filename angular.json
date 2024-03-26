@@ -18,7 +18,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": [
-              "axios"
+              "axios",
+              "dotenv"
            ],
             "outputPath": "dist/level-up",
             "index": "src/index.html",
