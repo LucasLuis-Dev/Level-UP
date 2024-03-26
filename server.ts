@@ -4,6 +4,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
+import { Console } from 'node:console';
 
 const path = require("path");
 const fs = require("fs");
@@ -21,51 +22,6 @@ export function app(): express.Express {
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
-
-  let env = process.env;
-
-  const distPath = "dist/level-up";
-
-  const files = fs.readdirSync(`${distPath}/`);
-
-  let mainjs: any = null;
-
-  let mainFullPath = files.find((file: any) => file.match("main.*.js"));
-
-  if (mainFullPath) {
-    mainFullPath = `${distPath}/${mainFullPath}`;
-
-    mainjs = fs.readFileSync(mainFullPath).toString();
-
-    fs.copyFileSync(mainFullPath, "dist/main.cache.js");
-
-    
-    Object.keys(env).forEach((key) => {
-      if (key.startsWith("RP_")) {
-        var regex = new RegExp("\\$" + key, "g");
-        console.log(`replacing ${key} with ${env[key]}`);
-        mainjs = mainjs.replaceAll(regex, env[key]);
-      }
-    });
-
-    fs.writeFileSync(mainFullPath, mainjs);
-  }
-
-  function cleanUp() {
-    try {
-      fs.copyFileSync("dist/main.cache.js", mainFullPath);
-
-      fs.rmSync("dist/main.cache.js");
-    } catch (error) {}
-  }
-
-  process.on("SIGTERM", () => {
-    cleanUp();
-  });
-  process.on("SIGINT", () => {
-    cleanUp();
-  });
-
 
   server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -150,6 +106,50 @@ server.get('/games/order/:order', async (req, res) => {
 
 function run(): void {
   const port = process.env['PORT'] || 4000;
+
+  let env = process.env;
+
+  const distPath = "dist/level-up/browser";
+
+  const files = fs.readdirSync(`${distPath}/`);
+
+  let mainjs: any = null;
+
+  let mainFullPath = files.find((file: any) => file.match("main.*.js"));
+
+  if (mainFullPath) {
+    mainFullPath = `${distPath}/${mainFullPath}`;
+
+    mainjs = fs.readFileSync(mainFullPath).toString();
+
+    fs.copyFileSync(mainFullPath, "dist/main.cache.js");
+
+    
+    Object.keys(env).forEach((key) => {
+      if (key.startsWith("RP_")) {
+        var regex = new RegExp("\\$" + key, "g");
+        console.log(`replacing ${key} with ${env[key]}`);
+        mainjs = mainjs.replaceAll(regex, env[key]);
+      }
+    });
+    
+    fs.writeFileSync(mainFullPath, mainjs);
+  }
+
+  function cleanUp() {
+    try {
+      fs.copyFileSync("dist/main.cache.js", mainFullPath);
+
+      fs.rmSync("dist/main.cache.js");
+    } catch (error) {}
+  }
+
+  process.on("SIGTERM", () => {
+    cleanUp();
+  });
+  process.on("SIGINT", () => {
+    cleanUp();
+  });
 
   // Start up the Node server
   const server = app();
