@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { ListGamesComponent } from '../../components/list-games/list-games.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GamesService } from '../../services/games/games.service';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ListGamesComponent],
+  imports: [ListGamesComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

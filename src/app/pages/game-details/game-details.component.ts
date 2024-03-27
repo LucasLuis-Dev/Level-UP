@@ -41,6 +41,10 @@ export class GameDetailsComponent implements OnInit {
         }
       });
     }
+
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.selectedGame.screenshots.length;
+    }, 3000);
   }
   
 

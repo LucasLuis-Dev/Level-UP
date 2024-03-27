@@ -1,0 +1,24 @@
+@import "../../../scss/abstracts/variables";
+
+
+.search-page {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        padding: 0rem $padding-sides; 
+        min-height: 100vh;
+
+        &-head {
+            display: flex;
+            justify-content: space-between;
+            padding:  1rem 0;
+            color: $color-white;
+            border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
+            margin-bottom: 2rem;
+
+            &-title {
+                font-weight: 600;
+            }
+        }
+    }
+}

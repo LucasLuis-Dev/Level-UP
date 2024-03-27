@@ -1,10 +1,10 @@
 <div class="home__container">
     <figure class="home__container-carousel">
-        <img class="home__container-carousel-img" src="../../../assets/images/FREE GAMES.png" alt="">
+        <img class="home__container-carousel-img" src="../../../assets/images/FREE GAMES.jpg" alt="">
     </figure>
     <div class="home__container-title-box">
         <h1 class="home__container-title-box-text">All Games</h1>
-        <!--
+        
             <select id="orderSelect" class="home__container-title-box-select" [(ngModel)]="selectedOrderGames" (change)="updateOrder()">
               <option value="" disabled selected hidden>Sort By</option>
               <option value="default">Default</option>
@@ -13,7 +13,7 @@
               <option value="alphabetical">Name (alphabetical order)</option>
               <option value="relevance">Relevance</option>
             </select>   
-        -->     
+           
     </div> 
     
     <app-list-games [gamesList]="gamesList"></app-list-games>

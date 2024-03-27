@@ -1,5 +1,5 @@
 <nav class="navbar__container">
-    <figure class="navbar__container-figure-logo">
+    <a class="navbar__container-figure-logo" [routerLink]="['/']">
         <svg class="navbar__container-figure-logo-img" version="1.0" xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 666.000000 112.000000"
             preserveAspectRatio="xMidYMid meet">
@@ -43,9 +43,12 @@
             -46 -48 30 -123 77 -166 104 l-78 48 -75 -46z"/>
             </g>
         </svg>
-    </figure>
+    </a>
 
-    <input class="navbar__container-input-search" type="text" placeholder="Pesquisar Jogo">
+    <form (ngSubmit)="searchGame()"> 
+        <input class="navbar__container-input-search" type="text" placeholder="Pesquisar Jogo" [(ngModel)]="searchInput">
+    </form>
+    
     
     <figure class="navbar__container-figure-user-icon">
         <img class="navbar__container-figure-user-icon-img" src="../../../assets/images/photo-dev.png" alt="">
