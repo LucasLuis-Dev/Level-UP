@@ -3,6 +3,12 @@
         <h1 class="search-page__container-head-title">{{ searchQuery }}</h1>
     </div>
     
-
-    <app-list-games [gamesList]="gamesList"></app-list-games>
+    @if (gamesList.length > 0) {
+        <app-list-games [gamesList]="gamesList" ></app-list-games>
+    } @else {
+        <figure class="search-page__container-figure-no-data">
+            <img src="../../../assets/images/No data-amico.svg" alt="">
+        </figure>
+    }
+    
 </div>

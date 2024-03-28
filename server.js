@@ -1,40 +1,21 @@
-import { APP_BASE_HREF } from '@angular/common';
-import { CommonEngine } from '@angular/ssr';
-import express from 'express';
-import { fileURLToPath } from 'node:url';
-import { dirname, join, resolve } from 'node:path';
-import bootstrap from './src/main.server';
-import { Console } from 'node:console';
-
+const express = require('express');
 const path = require("path");
 const fs = require("fs");
 const axios = require('axios');
 require("dotenv").config();
 
-// The Express app is exported so that it can be used by serverless Functions.
-export function app(): express.Express {
-  const server = express();
-  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-  const browserDistFolder = resolve(serverDistFolder, '../browser');
-  const indexHtml = join(serverDistFolder, 'index.server.html');
 
-  const commonEngine = new CommonEngine();
+const server = express()
 
-  server.set('view engine', 'html');
-  server.set('views', browserDistFolder);
-
-  server.use((req, res, next) => {
+server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Request-Method', '*');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
     res.setHeader('Access-Control-Allow-Headers', '*');
     next();
-  });
+});
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-
-  server.get('/games', async (req, res) => {
+server.get('/games', async (req, res) => {
     try {
       const response = await axios.get('https://www.freetogame.com/api/games');
       res.json(response.data);
@@ -80,32 +61,9 @@ server.get('/games/order/:order', async (req, res) => {
   }
 });
 
-  // Serve static files from /browser
-  server.get('*.*', express.static(browserDistFolder, {
-    maxAge: '1y'
-  }));
 
-  // All regular routes use the Angular engine
-  server.get('*', (req, res, next) => {
-    const { protocol, originalUrl, baseUrl, headers } = req;
 
-    commonEngine
-      .render({
-        bootstrap,
-        documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: browserDistFolder,
-        providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
-      })
-      .then((html) => res.send(html))
-      .catch((err) => next(err));
-  });
-
-  return server;
-}
-
-function run(): void {
-  const port = process.env['PORT'] || 4000;
+const port = process.env['PORT'] || 4000;
 
   let env = process.env;
 
@@ -113,9 +71,9 @@ function run(): void {
 
   const files = fs.readdirSync(`${distPath}/`);
 
-  let mainjs: any = null;
+  let mainjs = null;
 
-  let mainFullPath = files.find((file: any) => file.match("main.*.js"));
+  let mainFullPath = files.find((file) => file.match("main.*.js"));
 
   if (mainFullPath) {
     mainFullPath = `${distPath}/${mainFullPath}`;
@@ -151,11 +109,13 @@ function run(): void {
     cleanUp();
   });
 
-  // Start up the Node server
-  const server = app();
+  
+  server.use(express.static(path.join(__dirname, distPath)));
+
+  server.get("/", (request, response) => {
+    response.sendFile(path.join(`${__dirname}/${distPath}/index.html`));
+  });
+
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
-}
-
-run();

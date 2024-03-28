@@ -20,5 +20,14 @@
                 font-weight: 600;
             }
         }
+
+        &-figure-no-data {
+            width: 100%;
+            text-align: center;
+
+            & img {
+                width: 45%;
+            }
+        }
     }
 }
