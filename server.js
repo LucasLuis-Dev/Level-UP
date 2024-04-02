@@ -10,7 +10,7 @@ const server = express()
 server.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
     res.setHeader('Access-Control-Allow-Headers', '*');
     next();
 });
@@ -112,7 +112,7 @@ const port = process.env['PORT'] || 4000;
   
   server.use(express.static(path.join(__dirname, distPath)));
 
-  server.get("/", (request, response) => {
+  server.get("/*", (request, response) => {
     response.sendFile(path.join(`${__dirname}/${distPath}/index.html`));
   });
 

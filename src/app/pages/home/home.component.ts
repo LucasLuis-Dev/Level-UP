@@ -3,17 +3,19 @@ import { ListGamesComponent } from '../../components/list-games/list-games.compo
 import { HttpClientModule } from '@angular/common/http';
 import { GamesService } from '../../services/games/games.service';
 import { FormsModule } from '@angular/forms';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ListGamesComponent, FormsModule],
+  imports: [ListGamesComponent, FormsModule, LoaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   gamesList: any[] = [];
+  displayLoader: boolean = true;
   selectedOrderGames: string = '';
   selectedFilterPlatform: string = '';
   selectedFilterCategory: string = '';
@@ -41,6 +43,10 @@ export class HomeComponent {
       next: (data: any) => {
         this.gamesList = data;
         this.applyFilters();
+
+        setInterval(() => {
+          this.displayLoader = false
+        }, 200)
       },
       error: (error: any) => {
         console.error('Erro ao obter a lista de jogos:', error);

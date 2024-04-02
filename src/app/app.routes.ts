@@ -6,5 +6,5 @@ import { SearchGameComponent } from './pages/search-game/search-game.component';
 export const routes: Routes = [
     { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'gameDetail/:id', component: GameDetailsComponent },
-    { path: 'search/:search-input', component: SearchGameComponent }
+    { path: 'search/:search-input', component: SearchGameComponent },
 ];

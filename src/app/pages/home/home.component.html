@@ -17,4 +17,8 @@
     </div> 
     
     <app-list-games [gamesList]="gamesList"></app-list-games>
+    @if (displayLoader) {
+        <app-loader ></app-loader>
+    }
+    
 </div>

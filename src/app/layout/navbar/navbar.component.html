@@ -50,7 +50,20 @@
     </form>
     
     
-    <figure class="navbar__container-figure-user-icon">
-        <img class="navbar__container-figure-user-icon-img" src="../../../assets/images/photo-dev.png" alt="">
-    </figure>
+
+    @if (userLogged) {
+        <figure class="navbar__container-figure-user-icon">
+            <img class="navbar__container-figure-user-icon-img" src="../../../assets/images/photo-dev.png" alt="">
+        </figure>
+    }
+    @else {
+        <div class="navbar__container-box-right">
+            <a class="navbar__container-button" (click)="signInWithGoogle()">
+                <img class="navbar__container-button-icon" src="../../../assets/images/google-color-svgrepo-com (1).svg" alt="">
+                Sign In
+            </a>
+        </div>
+        
+    }
+    
 </nav>
