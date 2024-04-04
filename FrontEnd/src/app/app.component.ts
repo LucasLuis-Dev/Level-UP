@@ -6,7 +6,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 
 import { environment } from '../enviroments/enviroment';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+
+
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,6 @@ export class AppComponent {
       messagingSenderId: environment.MESSAGING_SENDER_ID,
       appId: environment.APP_ID
     }
-    console.log(firebaseConfig)
     const app = initializeApp(firebaseConfig);  
   }
  
