@@ -7,62 +7,6 @@ require("dotenv").config();
 
 const server = express()
 
-server.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    next();
-});
-
-server.get('/games', async (req, res) => {
-    try {
-      const response = await axios.get('https://www.freetogame.com/api/games');
-      res.json(response.data);
-    } catch (error) {
-      console.error('Erro ao obter os jogos:', error);
-      res.status(500).json({ error: 'Erro ao obter os jogos' });
-    }
-});
-
-server.get('/games/:id', async (req, res) => {
-  const gameId = req.params.id;
-
-  try {
-    const response = await axios.get(`https://www.freetogame.com/api/game?id=${gameId}`);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Erro ao obter os dados do jogo:', error);
-    res.status(500).json({ error: 'Erro ao obter o jogo' });
-  }
-});
-
-server.get('/games/category/:category', async (req, res) => {
-  const category = req.params.category;
-
-  try {
-    const response = await axios.get(`https://www.freetogame.com/api/games?category=${category}`);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Erro ao obter os jogos por categoria:', error);
-    res.status(500).json({ error: 'Erro ao obter os jogos por categoria' });
-  }
-});
-
-server.get('/games/order/:order', async (req, res) => {
-  const order = req.params.order;
-
-  try {
-    const response = await axios.get(`https://www.freetogame.com/api/games?sort-by=${order}`);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Erro ao obter os jogos por categoria:', error);
-    res.status(500).json({ error: 'Erro ao obter os jogos por categoria' });
-  }
-});
-
-
-
 const port = process.env['PORT'] || 4000;
 
   let env = process.env;

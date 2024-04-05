@@ -15,19 +15,19 @@ export class GamesService {
   }
 
   getAllGames() {
-    return this.http.get(this.baseUrl + "games");
+    return this.http.get(this.baseUrl + "api/games");
   }
 
   getGameByID(gameID: string) {
-    return this.http.get(this.baseUrl + "games/" + gameID)
+    return this.http.get(this.baseUrl + "api/games/" + gameID)
   }
 
   getGamesByCategory(category: string) {
-    return this.http.get(this.baseUrl + "games/category/" + category)
+    return this.http.get(this.baseUrl + "api/games/category/" + category)
   }
 
   getGamesByOrder(order: string) {
-    return this.http.get(this.baseUrl + "games/order/" + order)
+    return this.http.get(this.baseUrl + "api/games/order/" + order)
   }
   
 }

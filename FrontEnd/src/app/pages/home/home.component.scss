@@ -30,12 +30,16 @@
                 font-weight: 600;
             }
 
+            &-filter {
+                display: flex;
+                gap: 1rem;
+            }
             
 
             &-select {
                 -webkit-appearance: none;
                 -moz-appearance: none;
-                width: 25rem;
+                width:100%;
                 background-color: $color-highlight;
                 border: none;
                 outline: none;
@@ -49,6 +53,16 @@
                 background-position-x: 92%;
                 background-position-y: center;
                 background-size: 8%;
+                cursor: pointer;
+
+                & option {
+                    background-color: $color-background;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $color-highlight;
+                    }
+                }
             } 
        }
 

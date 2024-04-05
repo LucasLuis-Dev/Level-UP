@@ -1,20 +1,35 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { GamesService } from './games.service';
-import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
 
-@Controller('games')
+
+@Controller('api/games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
-
-  @Post()
-  create(@Body() createGameDto: CreateGameDto) {
-    return this.gamesService.create(createGameDto);
-  }
 
   @Get()
   findAll() {
     return this.gamesService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.gamesService.findOne(+id);
+  }
+
+  @Get('category/:category')
+  filterByCategory(@Param('category') category: string) {
+    return this.gamesService.filterByCategory(category)
+  }
+
+  @Get('order/:order')
+  filterByOrder(@Param('order') order: string) {
+    return this.gamesService.filterByOrder(order)
+  }
+
+  /*
+  @Post()
+  create(@Body() createGameDto: CreateGameDto) {
+    return this.gamesService.create(createGameDto);
   }
 
   @Get(':id')
@@ -31,4 +46,5 @@ export class GamesController {
   remove(@Param('id') id: string) {
     return this.gamesService.remove(+id);
   }
+  */
 }

@@ -3,18 +3,36 @@
         <img class="home__container-carousel-img" src="../../../assets/images/FREE GAMES.jpg" alt="">
     </figure>
     <div class="home__container-title-box">
-        <h1 class="home__container-title-box-text">All Games</h1>
-        
-            <select id="orderSelect" class="home__container-title-box-select" [(ngModel)]="selectedOrderGames" (change)="updateOrder()">
-              <option value="" disabled selected hidden>Sort By</option>
-              <option value="default">Default</option>
-              <option value="release-date">Release Date</option>
-              <option value="popularity">Popularity</option>
-              <option value="alphabetical">Name (alphabetical order)</option>
-              <option value="relevance">Relevance</option>
-            </select>   
-           
-    </div> 
+        <h1 class="home__container-title-box-text">All Games</h1> 
+
+        <div class="home__container-title-box-filter">
+            <select id="orderSelect" class="home__container-title-box-select" [(ngModel)]="selectedFilterPlatform" (change)="updatePlatform()">
+                <option value="" disabled selected hidden>Platform</option>
+                <option value="default">Default</option>
+                <option value="pc">PC</option>
+                <option value="browser">Browser</option>
+            </select> 
     
+            <select id="orderSelect" class="home__container-title-box-select" [(ngModel)]="selectedFilterCategory" (change)="updateCategory()">
+                <option value="" disabled selected hidden>Category</option>
+                <option value="default">Default</option>
+                @for (category of categories; track category) {
+                    <option [value]="category">{{ category }}</option>
+                }
+              </select>
+            
+            <select id="orderSelect" class="home__container-title-box-select" [(ngModel)]="selectedOrderGames" (change)="updateOrder()">
+                <option value="" disabled selected hidden>Sort By</option>
+                <option value="default">Default</option>
+                <option value="release-date">Release Date</option>
+                <option value="popularity">Popularity</option>
+                <option value="alphabetical">Name (alphabetical order)</option>
+                <option value="relevance">Relevance</option>
+            </select>   
+        </div>
+        
+        
+    </div> 
+
     <app-list-games [gamesList]="gamesList"></app-list-games>
 </div>

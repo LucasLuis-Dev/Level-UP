@@ -42,7 +42,6 @@ export class HomeComponent {
     this.gamesService.getAllGames().subscribe({
       next: (data: any) => {
         this.gamesList = data;
-        this.applyFilters();
 
         setInterval(() => {
           this.displayLoader = false
@@ -61,7 +60,6 @@ export class HomeComponent {
       this.gamesService.getGamesByOrder(this.selectedOrderGames).subscribe({
         next: (data: any) => {
           this.gamesList = data;
-          this.applyFilters();
         },
         error: (error: any) => {
           console.error('Erro ao obter os jogos ordenados:', error);
@@ -74,31 +72,31 @@ export class HomeComponent {
     }
   }
 
-  updateFilter(): void {
-    this.applyFilters();
-  }
-
-  applyFilters(): void {
-    let filteredGames = [...this.gamesList];
-
-    if (this.selectedFilterPlatform) {
+  updatePlatform(): void {
+    
+    if (this.selectedFilterPlatform && this.selectedFilterPlatform != "default") {
       console.log(this.selectedFilterPlatform)
-      filteredGames = filteredGames.filter(game => game.platform.includes(this.selectedFilterPlatform));
+      this.gamesList = this.gamesList.filter(game => game.platform.toLowerCase().includes(this.selectedFilterPlatform));
+      console.log(this.gamesList)
+    } else if (this.selectedFilterPlatform == "default") {
+      this.loadDefaultGames()
     }
-
-    if (this.selectedFilterCategory) {
-      filteredGames = filteredGames.filter(game => game.genre.includes(this.selectedFilterCategory));
-    }
-
-    if (this.selectedFilterDate) {
-      filteredGames = filteredGames.filter(game => game.releaseDate === this.selectedFilterDate);
-    }
-
-    if (this.selectedFilterDeveloper) {
-      filteredGames = filteredGames.filter(game => game.developer.includes(this.selectedFilterDeveloper));
-    }
-
-    console.log(filteredGames);
-    this.gamesList = filteredGames;
   }
+
+  updateCategory(): void {
+    if (this.selectedFilterCategory && this.selectedFilterCategory != "default") {
+      this.gamesService.getGamesByCategory(this.selectedFilterCategory).subscribe({
+        next: (data: any) => {
+          this.gamesList = data;
+        },
+        error: (error: any) => {
+          console.error('Erro ao obter a lista de jogos:', error);
+        }
+      });
+    } else if (this.selectedFilterCategory == 'default') {
+      this.loadDefaultGames()
+    }
+  }
+
+ 
 }

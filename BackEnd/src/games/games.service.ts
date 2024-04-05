@@ -1,22 +1,58 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
+import { firstValueFrom } from 'rxjs';
+
 
 @Injectable()
 export class GamesService {
-  create(createGameDto: CreateGameDto) {
+
+  constructor(private readonly httpService: HttpService) {}
+
+  create() {
     return 'This action adds a new game';
   }
 
-  findAll() {
-    return `This action returns all games`;
+  async findAll(): Promise<any> {
+    try {
+      const response = await firstValueFrom(this.httpService.get('https://www.freetogame.com/api/games'));
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao fazer requisição HTTP:', error);
+      throw error;
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} game`;
+  async findOne(id: number): Promise<any> {
+    try {
+      const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/game?id=${id}`));
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao fazer requisição HTTP:', error);
+      throw error;
+    }
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
+  async filterByCategory(category: string): Promise<any> {
+    try {
+      const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/games?category=${category}`));
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao fazer requisição HTTP:', error);
+      throw error;
+    }
+  }
+
+  async filterByOrder(order: string): Promise<any> {
+    try {
+      const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/games?sort-by=${order}`));
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao fazer requisição HTTP:', error);
+      throw error;
+    }
+  }
+
+  update(id: number) {
     return `This action updates a #${id} game`;
   }
 
