@@ -3,16 +3,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GamesModule } from './games/games.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
+import configuration from './configuration';
 
 @Module({
   imports: [
-    GamesModule, 
-    MongooseModule.forRoot(process.env.DB_URI), 
+    GamesModule,
+    ConfigModule.forRoot({
+      load: [configuration]
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('mongoUri'), 
+      }),
+      inject: [ConfigService],
+    }),
     UserModule],
   controllers: [AppController],
   providers: [AppService],
