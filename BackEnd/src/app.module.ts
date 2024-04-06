@@ -12,7 +12,6 @@ dotenv.config();
 @Module({
   imports: [
     GamesModule, 
-    ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_URI), 
     UserModule],
   controllers: [AppController],
