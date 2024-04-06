@@ -9,10 +9,7 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     GamesModule, 
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DB_URI), 
     UserModule],
   controllers: [AppController],

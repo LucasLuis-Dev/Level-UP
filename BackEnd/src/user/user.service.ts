@@ -4,8 +4,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { IsUser } from './interface/user.interface';
 import { Model } from 'mongoose';
-import { AddFavortiteGameUserDto } from './dto/add-favorite-game-user.dto';
 import { User } from './schemas/user.schema';
+import { FavoriteGameUserDto } from './dto/favorite-game-user.dto';
+import { GetAllGameUserDto } from './dto/get-all-games-user.dto';
 
 @Injectable()
 export class UserService {
@@ -16,26 +17,43 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    console.log(createUserDto)
     createUserDto.games = []
     const newUser = await new this.userModel(createUserDto)
-    console.log(newUser)
     return newUser.save()
   }
 
-  async addGame(addFavoriteGameUserDto: AddFavortiteGameUserDto) {
-    const existingUser = await this.findByUserId(addFavoriteGameUserDto.userId);
+  async addGame(favoriteGameUserDto: FavoriteGameUserDto) {
+    const existingUser = await this.findByUserId(favoriteGameUserDto.userId);
 
     if (!existingUser) {
       return -1;
     };
-    if (!existingUser.games) {
-      existingUser.games = [];
-    }
 
-    existingUser.games.push(addFavoriteGameUserDto.gameId);
+    existingUser.games.push(favoriteGameUserDto.gameId);
 
     return this.userModel.findByIdAndUpdate(existingUser._id, existingUser, { new: true })
+  }
+
+  async removeGame(favoriteGameUserDto: FavoriteGameUserDto) {
+    const existingUser = await this.findByUserId(favoriteGameUserDto.userId);
+
+    if (!existingUser) {
+      return -1;
+    };
+
+    existingUser.games = existingUser.games.filter(gameId => gameId !== favoriteGameUserDto.gameId);
+
+    return this.userModel.findByIdAndUpdate(existingUser._id, existingUser, { new: true })
+  }
+
+  async getAllGamesUser(getAllGamesUserDto: GetAllGameUserDto) {
+    const existingUser = await this.findByUserId(getAllGamesUserDto.userId);
+
+    if (!existingUser) {
+      return -1;
+    };
+
+    return existingUser.games
   }
 
   async findByUserId(userId: string): Promise<User> {

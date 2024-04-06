@@ -2,7 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { AddFavortiteGameUserDto } from './dto/add-favorite-game-user.dto';
+import { FavoriteGameUserDto } from './dto/favorite-game-user.dto';
+import { GetAllGameUserDto } from './dto/get-all-games-user.dto';
 
 @Controller('api/user')
 export class UserController {
@@ -14,13 +15,18 @@ export class UserController {
   }
 
   @Patch('add-game')
-  addGameFavoriteUser(@Body() addFavoriteGamerUser: AddFavortiteGameUserDto) {
-    return this.userService.addGame(addFavoriteGamerUser)
+  addGameFavoriteUser(@Body() favoriteGamerUserDto: FavoriteGameUserDto) {
+    return this.userService.addGame(favoriteGamerUserDto)
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Delete('remove-game')
+  removeGameFavoriteUser(@Body() favoriteGamerUserDto: FavoriteGameUserDto) {
+    return this.userService.removeGame(favoriteGamerUserDto);
+  }
+
+  @Get('games')
+  getAllGamesUser(@Body() getAllGamesUserDto: GetAllGameUserDto) {
+    return this.userService.getAllGamesUser(getAllGamesUserDto);
   }
 
   @Get(':id')

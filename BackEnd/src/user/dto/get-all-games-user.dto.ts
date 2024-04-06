@@ -1,11 +1,7 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class AddFavortiteGameUserDto {
+export class GetAllGameUserDto {
     @IsNotEmpty()
     @IsString()
     userId: string;
-
-    @IsNotEmpty()
-    @IsString()
-    gameId: string
 }
