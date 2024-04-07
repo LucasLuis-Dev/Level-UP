@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import { User } from './schemas/user.schema';
 import { FavoriteGameUserDto } from './dto/favorite-game-user.dto';
 import { GetAllGameUserDto } from './dto/get-all-games-user.dto';
+import e from 'express';
 
 @Injectable()
 export class UserService {
@@ -18,6 +19,16 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto) {
     createUserDto.games = []
+
+    const existingUser = await this.findByUserId(createUserDto.userId)
+
+    if (existingUser) {
+      return {
+        statusCode: HttpStatus.OK,
+        message: " The user already exists"
+      }
+    }
+
     const newUser = await new this.userModel(createUserDto)
     return newUser.save()
   }

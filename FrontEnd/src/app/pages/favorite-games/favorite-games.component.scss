@@ -1,0 +1,23 @@
+@import '../../../scss/abstracts/variables';
+
+.favorite-games {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        padding: 2% $padding-sides;
+        min-height: 100vh;
+
+        &-box {
+            display: flex;
+            justify-content: space-between;
+            padding:  1rem 0;
+            color: $color-white;
+            border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
+            margin-bottom: 2rem;
+
+            &-title {
+                font-weight: 600;
+            }
+        }
+    }
+}

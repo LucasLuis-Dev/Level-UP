@@ -8,11 +8,9 @@ import { environment } from '../../../enviroments/enviroment';
 })
 export class GamesService {
 
-  baseUrl =  ''
+  private baseUrl: string = environment.PROXY_URL;
 
-  constructor(private http: HttpClient) {
-    this.baseUrl = environment.PROXY_URL
-  }
+  constructor(private http: HttpClient) {}
 
   getAllGames() {
     return this.http.get(this.baseUrl + "api/games");
