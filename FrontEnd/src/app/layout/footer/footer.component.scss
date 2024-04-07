@@ -20,6 +20,10 @@
             }
         }
 
+        &-paragraph {
+            color: $color-background;
+        }
+
         &-list {
             display: flex;
             justify-content: flex-end;
@@ -32,6 +36,35 @@
                         width: 3.5rem;
                     }
                 }
+            }
+        }
+    }
+
+    @media screen and (max-width:480px) {
+        &__container {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+
+            &-figure {
+                &-logo {
+                    justify-content: center;
+                    &-img {
+                        width: 80%;
+                        fill: $color-background;
+                    }
+                }
+            }
+
+            &-paragraph {
+                text-align: center;
+            }
+
+            &-list {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                list-style: none;
             }
         }
     }

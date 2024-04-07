@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { environment } from '../../../enviroments/enviroment';
@@ -8,15 +8,19 @@ import { environment } from '../../../enviroments/enviroment';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  searchInput: string = '';
+  searchForm: FormGroup;
   userLogged: boolean = false;
   userPhoto: string = ''
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) {
+    this.searchForm = this.formBuilder.group({
+      searchInput: ['']
+    });
+  }
 
   signInWithGoogle(): void {
     this.authService.signInWithGoogle()
@@ -34,6 +38,7 @@ export class NavbarComponent {
   }
 
   searchGame() {
-      this.router.navigate(['/search', this.searchInput]);
+    const searchValue = this.searchForm.get('searchInput')?.value;
+    this.router.navigate(['/search', searchValue]);
   }
 }

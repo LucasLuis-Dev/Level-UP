@@ -102,4 +102,51 @@
             }
         }
     }
+
+    @media screen and (max-width:480px) {
+        &__container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            padding: 2rem $padding-sides;
+            align-items: center;
+            height: auto;
+            gap: 1rem;
+            width: 100%;
+
+            &-figure {
+                &-logo {
+                    justify-content: center;
+                    &-img {
+                        width: 80%;
+                    }
+                }
+            }
+
+            &-form {
+                height: 100%;
+            }
+            &-box-right {
+                display: flex;
+                justify-content: center;
+            }
+    
+            &-button {
+                @include button;
+                width: 100%;
+                background-color: transparent;
+                border: .1rem solid $color-highlight;
+            }
+
+            &-user {
+                justify-content: space-between;
+
+                &-button {
+                    @include button;
+                    text-decoration: none;
+                    width: 100%;
+                }
+            }
+        }
+    }
 }

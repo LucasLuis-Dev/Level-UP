@@ -45,8 +45,8 @@
         </svg>
     </a>
 
-    <form (ngSubmit)="searchGame()" class="navbar__container-form"> 
-        <input class="navbar__container-form-input-search" type="text" placeholder="Pesquisar Jogo" [(ngModel)]="searchInput" >
+    <form [formGroup]="searchForm" (ngSubmit)="searchGame()" class="navbar__container-form"> 
+        <input class="navbar__container-form-input-search" type="text" placeholder="Pesquisar Jogo" formControlName="searchInput">
     </form>
     
     

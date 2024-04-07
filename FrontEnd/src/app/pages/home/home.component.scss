@@ -66,59 +66,7 @@
             } 
        }
 
-       &-filter-box {
-            display: flex;
-            justify-content: space-between;
-            padding-bottom: 2rem;
-
-            &-button-filter {
-                @include button;
-                cursor: default;
-                width: fit-content;
-        
-                    &-svg {
-                        fill: white;
-                        width: 2rem;
-                    }
-            }
-
-            &-filter-options {
-                display: flex;
-                gap: 1rem;
-
-                &-select {
-                    -webkit-appearance: none;
-                -moz-appearance: none;
-                width: 13rem;
-                background-color: $color-highlight;
-                border: none;
-                outline: none;
-                border-radius: 1rem;
-                font-size: 1.6rem;
-                padding: 1rem;
-                color: $color-white;
-                font-weight: 600;
-                background-repeat: no-repeat;
-                background-position-x: 92%;
-                background-position-y: center;
-                background-size: 8%;
-                }
-
-                &-input {
-                    border-radius: 1rem;
-                    background-color: $color-highlight;
-                    outline: none;
-                    border: none;
-                    padding: 1rem;
-                    color: $color-white;
-                    font-size: 1.6rem;
-                    &::placeholder {
-                        color: $color-white;
-                    }
-                }
-            }
-        }
-
+     
         @media screen and (max-width: 480px) {
             &-title-box {
                 display: flex;
@@ -131,11 +79,10 @@
                 margin-bottom: 2rem;
     
                 &-text {
-                    font-weight: 600;
+                    font-size: 2.5rem;
                 }
     
-                
-    
+
                 &-select {
                     -webkit-appearance: none;
                     -moz-appearance: none;
@@ -144,8 +91,8 @@
                     border: none;
                     outline: none;
                     border-radius: 1rem;
-                    font-size: 1.9rem;
-                    padding: 2rem;
+                    font-size: 1.5rem;
+                    padding: 1.5rem;
                     color: $color-white;
                     font-weight: 600;
                     background-repeat: no-repeat;
@@ -155,62 +102,7 @@
                 } 
            }
 
-           &-filter-box {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-            padding-bottom: 2rem;
-
-            &-button-filter {
-                @include button;
-                cursor: default;
-                width: 100%;
-        
-                    &-svg {
-                        fill: white;
-                        width: 2rem;
-                    }
-            }
-
-            &-filter-options {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-
-                &-select {
-                    -webkit-appearance: none;
-                -moz-appearance: none;
-                width: 100%;
-                background-color: $color-highlight;
-                border: none;
-                outline: none;
-                border-radius: 1rem;
-                font-size: 1.6rem;
-                padding: 1rem;
-                color: $color-white;
-                font-weight: 600;
-                background-repeat: no-repeat;
-                background-position-x: 92%;
-                background-position-y: center;
-                background-size: 8%;
-                }
-
-                &-input {
-                    border-radius: 1rem;
-                    background-color: $color-highlight;
-                    outline: none;
-                    border: none;
-                    padding: 1rem;
-                    width: 100%;
-                    color: $color-white;
-                    font-size: 1.6rem;
-                    &::placeholder {
-                        color: $color-white;
-                    }
-                }
-            }
-        }
+          
         }
         
     }

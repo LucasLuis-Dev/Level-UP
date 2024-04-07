@@ -29,5 +29,14 @@
                 width: 45%;
             }
         }
+
+        @media screen and (max-width: 480px) {
+
+            &-head {
+                &-title {
+                    font-size: 2.5rem;
+                }
+            }
+        }
     }
 }

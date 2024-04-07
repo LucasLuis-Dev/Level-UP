@@ -153,6 +153,8 @@
         
 
         @media screen and (max-width: 480px) {
+            padding: 0.4rem $padding-sides;
+            
             &-section {
                 grid-template-columns: 1fr;
     

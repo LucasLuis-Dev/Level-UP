@@ -26,7 +26,6 @@ export class SearchGameComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.searchQuery = params['search-input'];
-      console.log(this.searchQuery)
 
       this.loadDefaultGames();
     });
