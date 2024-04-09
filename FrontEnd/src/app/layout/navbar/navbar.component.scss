@@ -1,5 +1,6 @@
 @import '../../../scss/abstracts/variables';
 @import '../../../scss/abstracts/mixins';
+@import '../../../scss/base/animations';
 
 .navbar {
     &__container {
@@ -24,9 +25,22 @@
             &-user-icon {
                 display: flex;
                 text-align: end;
+                cursor: pointer;
+                transition: all 200ms ease-in-out;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.229);
+                    border-radius: 1rem;
+                }
+                
                 &-img {
-                    width: 6rem;
+                    width: 5.5rem;
                     border-radius: 50%;
+                }
+
+                &-menu {
+                    width: 2.5rem;
+                    stroke: $color-white;
                 }
             }
         }
@@ -47,6 +61,59 @@
                     width: 2rem;
                 }
             }
+        }
+
+        &-user-profile {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: $color-background;
+            backdrop-filter: blur(.7rem);
+            border-radius: 1rem 1rem 0rem 0rem;
+            padding: 2rem;
+            justify-content: center;
+            align-items: center;
+            color: $color-white;
+
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 30%;
+            right: -40%;
+            z-index: 120;
+
+            &.show-user-profile {
+                animation: .5s slideToLeft ease-in-out forwards;
+            }
+            &.hide-user-profile {
+                animation: .5s slideToRight ease-in-out;
+            }
+
+            &-close {
+                position: fixed;
+                padding: 1rem;
+                border-radius: 1rem 0rem 0rem 1rem;
+                right: 99.9%;
+                top: 10%;
+                background-color: $color-background;
+                backdrop-filter: blur(.7rem);
+                cursor: pointer;
+                &-svg {
+                    width: 3rem;
+                    stroke: $color-white;
+                }
+            }
+
+            &-img {
+                width: 50%;
+                border-radius: 50%;
+            }
+
+            &-button {
+                @include button;
+            }
+
+            
         }
 
         &-form {
@@ -146,6 +213,36 @@
                     text-decoration: none;
                     width: 100%;
                 }
+            }
+
+            &-user-profile {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                background-color: $color-background;
+                backdrop-filter: blur(.7rem);
+                border-radius: 1rem 1rem 0rem 0rem;
+                padding: 2rem;
+                justify-content: center;
+                align-items: center;
+                color: $color-white;
+    
+                position: fixed;
+                top: 0;
+                height: 100vh;
+                width: 70%;
+                right: -80%;
+                z-index: 120;
+    
+                &.show-user-profile {
+                    animation: .5s slideToLeftMobile ease-in-out forwards;
+                }
+                &.hide-user-profile {
+                    animation: .5s slideToRightMobile ease-in-out;
+                }
+    
+               
+                
             }
         }
     }

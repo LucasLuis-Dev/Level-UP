@@ -30,16 +30,13 @@ export class AuthService {
           environment.USER_NAME = user.displayName
           environment.USER_EMAIL = user.email
           environment.USER_UID = user.uid
-        }
-
+        }  
         this.userService.createUser(user.uid).pipe(
           catchError(error => {
             console.error('Erro ao criar usuário:', error);
             return throwError(error);
           })
         ).subscribe();
-
-  6 
       })
       .catch((error) => {
         const errorCode = error.code;

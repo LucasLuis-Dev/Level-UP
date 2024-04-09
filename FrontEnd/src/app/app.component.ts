@@ -6,13 +6,14 @@ import { FooterComponent } from './layout/footer/footer.component';
 
 import { environment } from '../enviroments/enviroment';
 import { initializeApp } from 'firebase/app';
+import { ArrowToTopComponent } from './components/arrow-to-top/arrow-to-top.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, ArrowToTopComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

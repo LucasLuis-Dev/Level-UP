@@ -91,3 +91,71 @@
     }
   }
   
+
+  @keyframes slideToLeft {
+    0% {
+        opacity: 0;
+        right: -40%;
+    }
+
+    100% {
+        opacity: 1;
+        right: 0;
+    }
+  }
+
+  @keyframes slideToRight {
+    0% {
+        opacity: 1;
+        right: 0;
+    }
+
+    100% {
+        opacity: 0;
+        right: -40%;
+    }
+  }
+
+  @keyframes slideToLeftMobile {
+    0% {
+        opacity: 0;
+        right: -70%;
+    }
+
+    100% {
+        opacity: 1;
+        right: 0;
+    }
+  }
+
+  @keyframes slideToRightMobile {
+    0% {
+        opacity: 1;
+        right: 0;
+    }
+
+    100% {
+        opacity: 0;
+        right: -80%;
+    }
+  }
+
+  @keyframes arrowUp {
+    0% {
+        bottom: -10%;
+    }
+
+    100% {
+        bottom: 2%;
+    }
+  }
+
+  @keyframes arrowDown {
+    0% {
+        bottom: 2%;
+    }
+
+    100% {
+        bottom: -10%;
+    }
+  }

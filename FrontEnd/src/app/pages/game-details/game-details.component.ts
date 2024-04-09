@@ -17,6 +17,7 @@ export class GameDetailsComponent implements OnInit {
   gameID: string | null = '';
   gameDetails: {label: string; value: any; }[] = [];
   isFavoriteGameByUser: boolean = false;
+  isLoggedUser: boolean = false;
   selectedGame: any;
   currentIndex = 0;
 
@@ -24,7 +25,6 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameID = this.activatedRoute.snapshot.paramMap.get("id");
-    console.log(this.gameID)
   
     if (this.gameID) {
       this.gamesService.getGameByID(this.gameID).subscribe({
@@ -43,6 +43,9 @@ export class GameDetailsComponent implements OnInit {
       });
       if (environment.USER_UID) {
         this.isFavoriteGame(this.gameID);
+        this.isLoggedUser = true
+      } else {
+        this.isLoggedUser = false
       }
       
     }
