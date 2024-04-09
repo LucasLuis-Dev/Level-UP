@@ -1,0 +1,61 @@
+@import '../../../scss/abstracts/variables';
+@import '../../../scss/abstracts/mixins';
+@import '../../../scss/base/animations';
+
+.game-details {
+    &__container {
+        &-section {
+            &-secondary-informations {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                &-figure {
+                    width: 100%;
+                    &-game-thumbnail {
+                        border-radius: 1rem;
+                        width: 100%;
+                    }
+                }
+                &-button-favorite {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+                    border: none;
+                    border-radius: 1rem;
+                    background-color: $color-highlight;
+                    color: $color-white;
+                    font-weight: 600;
+                    padding: 1.5rem;
+                    font-size: 1.6rem;
+                    cursor: pointer;
+                    transition: 200ms;
+                    &:hover {
+                        background-color: red;
+                    }
+                    & svg {
+                        fill: $color-white;
+                        width: 2rem;
+                    }
+                }
+                &-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    list-style: none;
+                    &-item {
+                        display: flex;
+                        justify-content: space-between;
+                        border-bottom: .1rem solid rgba(128, 128, 128, 0.479);
+                        &-game-description {
+                            @include paragraph;
+                        }
+                    }
+                }
+            }
+        }  
+    
+    }
+}
+
+

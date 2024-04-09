@@ -10,7 +10,7 @@ import { environment } from '../../../enviroments/enviroment';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './game-details.component.html',
-  styleUrl: './game-details.component.scss'
+  styleUrls: ['./game-details.component.scss', './game-details-secondary-informations.component.scss']
 })
 export class GameDetailsComponent implements OnInit {
   

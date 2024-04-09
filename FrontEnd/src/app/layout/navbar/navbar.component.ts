@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrls: ['./navbar.component.scss', './navbar-user-profile.component.scss', './navbar-responsive.component.scss']
 })
 export class NavbarComponent {
   searchForm: FormGroup;
