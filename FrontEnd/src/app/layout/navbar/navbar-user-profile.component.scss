@@ -31,6 +31,7 @@
                 animation: .5s slideToRight ease-in-out;
             }
 
+
             &-close {
                 position: fixed;
                 padding: 1rem;
@@ -54,8 +55,6 @@
             &-button {
                 @include button;
             }
-
-            
         }
     }
 

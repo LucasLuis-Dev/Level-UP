@@ -53,7 +53,8 @@ export class UserService {
   getAllFavoriteGames(userId: string): Observable<any> {
     const url = `${this.baseUrl}api/user/games`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const params = new HttpParams().set('userId', userId);
+    const timestamp = new Date().getTime();
+    const params = new HttpParams().set('userId', userId).set('timestamp', timestamp.toString());
 
     return this.http.get(url, { headers, params }).pipe(
       catchError(this.handleError)
