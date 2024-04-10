@@ -25,11 +25,9 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameID = this.activatedRoute.snapshot.paramMap.get("id");
-    
-    
-    
+
     if (this.gameID) {
-      if (environment.USER) {
+      if (environment.USER && Object.keys(environment.USER).length > 0) {
         this.isFavoriteGame(this.gameID);
         this.isLoggedUser = true
       } else {
