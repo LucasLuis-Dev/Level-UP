@@ -25,8 +25,16 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameID = this.activatedRoute.snapshot.paramMap.get("id");
-  
+    
+    
+    
     if (this.gameID) {
+      if (environment.USER) {
+        this.isFavoriteGame(this.gameID);
+        this.isLoggedUser = true
+      } else {
+        this.isLoggedUser = false
+      }
       this.gamesService.getGameByID(this.gameID).subscribe({
         next: (data: any) => {
           this.selectedGame = data;
@@ -41,12 +49,7 @@ export class GameDetailsComponent implements OnInit {
           console.error('Erro ao obter a lista de jogos:', error);
         }
       });
-      if (environment.USER_UID) {
-        this.isFavoriteGame(this.gameID);
-        this.isLoggedUser = true
-      } else {
-        this.isLoggedUser = false
-      }
+     
       
     }
 
