@@ -28,7 +28,7 @@
                     padding-left: 15%;
                     background-size: 7%;
                     background-position-x: 5%;
-                    font-size: 1.9rem;
+                    font-size: 1.65rem;
             }
             }
             &-box-right {
@@ -39,7 +39,7 @@
                 @include button;
                 width: 100%;
                 background-color: transparent;
-                font-size: 1.9rem;
+                font-size: 1.65rem;
                 border: .1rem solid $color-highlight;
             }
     
