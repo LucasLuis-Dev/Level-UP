@@ -7,7 +7,6 @@ import { Model } from 'mongoose';
 import { User } from './schemas/user.schema';
 import { FavoriteGameUserDto } from './dto/favorite-game-user.dto';
 import { GetAllGameUserDto } from './dto/get-all-games-user.dto';
-import e from 'express';
 
 @Injectable()
 export class UserService {
@@ -37,7 +36,10 @@ export class UserService {
     const existingUser = await this.findByUserId(favoriteGameUserDto.userId);
 
     if (!existingUser) {
-      return -1;
+      return {
+        statusCode: HttpStatus.NOT_FOUND,
+        message: "The user does not exist"
+      }
     };
 
     existingUser.games.push(favoriteGameUserDto.gameId);
@@ -49,7 +51,10 @@ export class UserService {
     const existingUser = await this.findByUserId(favoriteGameUserDto.userId);
 
     if (!existingUser) {
-      return -1;
+      return {
+        statusCode: HttpStatus.NOT_FOUND,
+        message: "The user does not exist"
+      }
     };
 
     existingUser.games = existingUser.games.filter(gameId => gameId !== favoriteGameUserDto.gameId);
@@ -61,7 +66,10 @@ export class UserService {
     const existingUser = await this.findByUserId(getAllGamesUserDto.userId);
 
     if (!existingUser) {
-      return -1;
+      return {
+        statusCode: HttpStatus.NOT_FOUND,
+        message: "The user does not exist"
+      }
     };
 
     return existingUser.games
@@ -70,21 +78,5 @@ export class UserService {
   async findByUserId(userId: string): Promise<User> {
     const user = await this.userModel.findOne({ userId }).exec();
     return user;
-  }
-
-  findAll() {
-    return `This action returns all user`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 }
