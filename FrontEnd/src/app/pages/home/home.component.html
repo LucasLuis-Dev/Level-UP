@@ -1,7 +1,27 @@
 <div class="home__container">
+    <!--
     <figure class="home__container-carousel">
         <img class="home__container-carousel-img" src="../../../assets/images/LEVEL UP.jpg" alt="">
     </figure>
+    -->
+
+    <div class="home__container-bg-header">
+        <img ngSrc="../../../assets/images/header-home.webp" priority width="1920" height="1080" alt="">
+    </div>
+
+    <header class="home__container-header">
+        <div class="home__container-header-informations">
+            <h1 class="home__container-header-informations-title">Discover Incredible <span>Free Games</span> at <span>LevelUP</span></h1>
+            <p class="home__container-header-informations-subtitle">Our platform offers a wide range of free games to suit all tastes and preferences. Explore our catalog and immerse yourself in a world of limitless entertainment!</p>
+        </div>
+
+        <div class="home__container-header-arrow">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
     <div class="home__container-title-box">
         <h1 class="home__container-title-box-text">All Games</h1> 
 
@@ -33,6 +53,9 @@
         
         
     </div> 
-
-    <app-list-games [gamesList]="gamesList"></app-list-games>
+    @if (gamesList && gamesList.length > 0) {
+        <app-list-games [gamesList]="gamesList"></app-list-games>
+    } @else {
+        <app-loader></app-loader>
+    }
 </div>

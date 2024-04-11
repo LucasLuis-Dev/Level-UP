@@ -4,15 +4,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { GamesService } from '../../services/games/games.service';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from '../../components/loader/loader.component';
+import { NgOptimizedImage } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ListGamesComponent, FormsModule, LoaderComponent],
+  imports: [ListGamesComponent, FormsModule, LoaderComponent, NgOptimizedImage],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss', './home-responsive.component.scss']
 })
+
 export class HomeComponent {
   gamesList: any[] = [];
   displayLoader: boolean = true;

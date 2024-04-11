@@ -1,7 +1,16 @@
 <main class="favorite-games__container">
     <div class="favorite-games__container-box">
-        <h1 class="favorite-games__container-box-title">Your Favorite Games</h1>
+        <h1 class="favorite-games__container-box-title">Your Favorite Games 💖</h1>
     </div>
     
-    <app-list-games [gamesList]="favoriteGames"></app-list-games>
+    @if (favoriteGames.length > 0) {
+        <app-list-games [gamesList]="favoriteGames"></app-list-games>
+    } @else if (inRequest) {
+        <app-loader></app-loader>
+    } @else if (favoriteGames.length == 0 && inRequest == false) {
+        <div class="favorite-games__container-no-games">
+            <h3>You don't have any favorite games yet 🙃</h3>
+        </div>
+    }
+    
 </main>

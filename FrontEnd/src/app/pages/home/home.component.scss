@@ -1,5 +1,6 @@
 @import "../../../scss/abstracts/variables";
 @import "../../../scss/abstracts/mixins";
+@import "../../../scss/base/animations";
 
 .home {
     &__container {
@@ -7,14 +8,91 @@
        flex-direction: column;
        padding: 0rem $padding-sides; 
 
-       &-carousel {
+       &-bg-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        
+        & img {
             width: 100%;
+            height: 100%;
+        }
+       }
 
-            &-img {
+       &-header {
+        display: flex;
+        width: 100%;
+        height: calc(100vh - 10rem);
+        justify-content: center;
+        align-items: center;
+
+       
+
+        &-figure {
+            width: 50%;
+
+            & img {
                 width: 100%;
-                border-radius: 1rem;
+            }
+        }
+
+        &-informations {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 50%;
+            gap: 1rem;
+            color: $color-white;
+
+            &-title {
+                width: fit-content;
+                font-size: 4.7rem;
+                animation: 1s moveInRight ease-in-out;
+
+                & span {
+                    color: $color-highlight;
+                }
             }
 
+            &-subtitle {
+                font-size: 1.8rem;
+                color: $color-text;
+                animation: 1s moveInLeft ease-in-out;
+            } 
+        }
+
+        &-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 90%;
+            cursor: pointer; 
+
+            & span {
+                display: block;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-bottom: .5rem solid $color-text;
+                border-right: .5rem solid $color-text;
+                transform: rotate(45deg);
+                margin: -1rem;
+                animation: animate 2s infinite;
+
+                &:nth-child(2) {
+                    animation-delay: -.2s;
+                }
+
+                &:nth-child(3) {
+                    animation-delay: -.4s;
+                }
+            }
+        }
        }
 
        
@@ -22,9 +100,12 @@
             display: flex;
             justify-content: space-between;
             padding:  1rem 0;
+            padding-top: 4rem;
             color: $color-white;
             border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
             margin-bottom: 2rem;
+
+            animation: .5s moveInUp ease-in-out;
 
             &-text {
                 font-weight: 600;
@@ -64,47 +145,7 @@
                     }
                 }
             } 
-       }
-
-     
-        @media screen and (max-width: 480px) {
-            &-title-box {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding:  1rem 0;
-                gap: 1rem;
-                color: $color-white;
-                border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
-                margin-bottom: 2rem;
-    
-                &-text {
-                    font-size: 2.5rem;
-                }
-    
-
-                &-select {
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    width: 100%;
-                    background-color: $color-highlight;
-                    border: none;
-                    outline: none;
-                    border-radius: 1rem;
-                    font-size: 1.5rem;
-                    padding: 1.5rem;
-                    color: $color-white;
-                    font-weight: 600;
-                    background-repeat: no-repeat;
-                    background-position-x: 92%;
-                    background-position-y: center;
-                    background-size: 8%;
-                } 
-           }
-
-          
-        }
-        
+       }      
     }
 
 }

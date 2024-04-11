@@ -31,8 +31,4 @@ export class AppComponent {
     }
     const app = initializeApp(firebaseConfig);  
   }
- 
-
-
-
 }

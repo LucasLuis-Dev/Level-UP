@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GamesService } from '../../services/games/games.service';
 import { ActivatedRoute } from '@angular/router';
 import { ListGamesComponent } from '../../components/list-games/list-games.component';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 interface Game {
   id: number;
@@ -13,12 +14,13 @@ interface Game {
 @Component({
   selector: 'app-search-game',
   standalone: true,
-  imports: [ListGamesComponent],
+  imports: [ListGamesComponent, LoaderComponent],
   templateUrl: './search-game.component.html',
   styleUrl: './search-game.component.scss'
 })
 export class SearchGameComponent implements OnInit{
   gamesList: any[] = [];
+  inRequest: boolean = false;
   searchQuery: string = '';
 
   constructor(private route: ActivatedRoute,private gamesService: GamesService) {}
@@ -26,7 +28,7 @@ export class SearchGameComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.searchQuery = params['search-input'];
-
+      this.inRequest = true;
       this.loadDefaultGames();
     });
   }
@@ -35,6 +37,9 @@ export class SearchGameComponent implements OnInit{
     this.gamesService.getAllGames().subscribe({
       next: (data: any) => {
         this.gamesList = this.applyFilterSearch(data)
+        if (this.gamesList.length == 0) {
+          this.inRequest = false
+        }
       },
       error: (error: any) => {
         console.error('Erro ao obter a lista de jogos:', error);

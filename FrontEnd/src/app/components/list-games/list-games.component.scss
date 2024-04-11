@@ -1,4 +1,5 @@
 @import '../../../scss/abstracts/variables';
+@import '../../../scss/base/animations';
 
 .list-games {
     &__container {
@@ -16,6 +17,7 @@
             position: relative;
             border-radius: .8rem;
             transition: all 200ms ease-in-out;
+            animation: .5s moveInUp ease-in-out;
 
             &:hover {
                 transform: translateY(-.5rem);

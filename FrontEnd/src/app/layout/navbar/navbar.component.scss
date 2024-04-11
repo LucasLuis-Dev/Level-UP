@@ -74,11 +74,16 @@
                 background-size: 5%;
                 background-position-y: center;
                 background-position-x: 4%;
-                background-color: rgba(255, 255, 255, 0.229);
+                background-color: rgba(255, 255, 255, 0.369);
     
                 &:focus {
                     outline: none;
                 }
+
+                &::placeholder {
+                    color: $color-text;
+                }
+
             }
         }
         &-box-right {

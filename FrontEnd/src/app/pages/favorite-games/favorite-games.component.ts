@@ -3,6 +3,7 @@ import { ListGamesComponent } from '../../components/list-games/list-games.compo
 import { UserService } from '../../services/user/user.service';
 import { environment } from '../../../enviroments/enviroment';
 import { GamesService } from '../../services/games/games.service';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 interface Game {
   id: number;
@@ -21,7 +22,7 @@ interface Game {
 @Component({
   selector: 'app-favorite-games',
   standalone: true,
-  imports: [ListGamesComponent],
+  imports: [ListGamesComponent, LoaderComponent],
   templateUrl: './favorite-games.component.html',
   styleUrl: './favorite-games.component.scss'
 })
@@ -31,8 +32,10 @@ export class FavoriteGamesComponent implements OnInit {
   
   favoriteGamesIds: string[] = [];
   favoriteGames: any[] = [];
+  inRequest: boolean = false;
 
   ngOnInit(): void {
+    this.inRequest = true;
     this.getFavoriteGamesIds();
   }
 
@@ -54,10 +57,8 @@ export class FavoriteGamesComponent implements OnInit {
     this.gamesService.getAllGames().subscribe({
       next: (data: any) => {
         const gamesList = data;
-        console.log(gamesList)
-        console.log(this.favoriteGamesIds)
         this.favoriteGames = gamesList.filter((game: any) => this.favoriteGamesIds.includes(String(game.id)));
-        console.log(this.favoriteGames)
+        this.inRequest = false;
       },
       error: (error: any) => {
         console.error('Erro ao obter a lista de jogos:', error);

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GamesService } from '../../services/games/games.service';
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule, NgOptimizedImage, formatDate } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { environment } from '../../../enviroments/enviroment';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
   selector: 'app-game-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoaderComponent, NgOptimizedImage],
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.scss', './game-details-secondary-informations.component.scss']
 })
@@ -25,6 +26,7 @@ export class GameDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.gameID = this.activatedRoute.snapshot.paramMap.get("id");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (this.gameID) {
       if (environment.USER && Object.keys(environment.USER).length > 0) {

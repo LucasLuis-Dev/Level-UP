@@ -5,7 +5,9 @@
     
     @if (gamesList.length > 0) {
         <app-list-games [gamesList]="gamesList" ></app-list-games>
-    } @else {
+    } @else if (inRequest) {
+        <app-loader></app-loader>
+    } @else if (gamesList.length == 0 && inRequest == false) {
         <figure class="search-page__container-figure-no-data">
             <img src="../../../assets/images/No data-amico.svg" alt="">
         </figure>

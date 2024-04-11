@@ -1,0 +1,100 @@
+@import "../../../scss/abstracts/variables";
+@import "../../../scss/abstracts/mixins";
+@import "../../../scss/base/animations";
+
+.home {
+    &__container {   
+        @media screen and (max-width: 480px) {
+
+            &-bg-header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: -1;
+                overflow-x: hidden;
+                
+                & img {
+                    width: auto;
+                    height: 100%;
+                }
+               }
+
+            &-header {
+                display: flex;
+                width: 100%;
+                height: calc(100vh - 22.6rem);
+                justify-content: center;
+                align-items: center;
+        
+                &-figure {
+                    width: 50%;
+        
+                    & img {
+                        width: 100%;
+                    }
+                }
+        
+                &-informations {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    width: 100%;
+                    gap: 2rem;
+                    color: $color-white;
+                    margin-top: -10rem;
+        
+                    &-title {
+                        font-size: 3.5rem;
+                    }
+        
+                    &-subtitle {
+                        font-size: 1.9rem;
+                    } 
+                }
+               }
+
+            &-title-box {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding:  1rem 0;
+                padding-top: 4rem;
+                gap: 1rem;
+                color: $color-white;
+                border-bottom: .1rem solid  rgba(128, 128, 128, 0.479);
+                margin-bottom: 2rem;
+    
+                &-text {
+                    font-size: 2.5rem;
+                }
+    
+
+                &-select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    width: 100%;
+                    background-color: $color-highlight;
+                    border: none;
+                    outline: none;
+                    border-radius: 1rem;
+                    font-size: 1.5rem;
+                    padding: 1.5rem;
+                    color: $color-white;
+                    font-weight: 600;
+                    background-repeat: no-repeat;
+                    background-position-x: 92%;
+                    background-position-y: center;
+                    background-size: 8%;
+                } 
+           }
+
+          
+        }
+        
+    }
+
+}
