@@ -38,7 +38,6 @@ export class NavbarComponent {
           this.userEmail = environment.USER_EMAIL
           this.userName = environment.USER_NAME
           this.userLogged = true
-
         }
        
       })
@@ -54,7 +53,8 @@ export class NavbarComponent {
 
   logoutUser():void {
     this.authService.signOutUser()
-    this.userLogged = false
+    this.userLogged = false;
+    this.displayUserProfile = false
     this.router.navigate(['/'])
   }
 
