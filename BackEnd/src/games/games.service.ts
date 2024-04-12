@@ -8,16 +8,11 @@ export class GamesService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  create() {
-    return 'This action adds a new game';
-  }
-
   async findAll(): Promise<any> {
     try {
       const response = await firstValueFrom(this.httpService.get('https://www.freetogame.com/api/games'));
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer requisição HTTP:', error);
       throw error;
     }
   }
@@ -27,7 +22,6 @@ export class GamesService {
       const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/game?id=${id}`));
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer requisição HTTP:', error);
       throw error;
     }
   }
@@ -37,7 +31,6 @@ export class GamesService {
       const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/games?category=${category}`));
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer requisição HTTP:', error);
       throw error;
     }
   }
@@ -47,16 +40,7 @@ export class GamesService {
       const response = await firstValueFrom(this.httpService.get(`https://www.freetogame.com/api/games?sort-by=${order}`));
       return response.data;
     } catch (error) {
-      console.error('Erro ao fazer requisição HTTP:', error);
       throw error;
     }
-  }
-
-  update(id: number) {
-    return `This action updates a #${id} game`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} game`;
   }
 }
