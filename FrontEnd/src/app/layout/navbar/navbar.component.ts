@@ -55,6 +55,7 @@ export class NavbarComponent {
     this.authService.signOutUser()
     this.userLogged = false;
     this.displayUserProfile = false
+    this.initialized = false;
     this.router.navigate(['/'])
   }
 
