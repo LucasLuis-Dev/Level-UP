@@ -12,11 +12,11 @@ import { GetAllGameUserDto } from './dto/get-all-games-user.dto';
 export class UserService {
 
   constructor(
-    @InjectModel("User")
+    @InjectModel(User.name)
     private userModel: Model<IsUser>
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto)  {
     createUserDto.games = []
 
     const existingUser = await this.findByUserId(createUserDto.userId)
