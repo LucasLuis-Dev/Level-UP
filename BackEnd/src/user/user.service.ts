@@ -57,9 +57,11 @@ export class UserService {
       }
     };
 
-    existingUser.games = existingUser.games.filter(gameId => gameId !== favoriteGameUserDto.gameId);
-
-    return this.userModel.findByIdAndUpdate(existingUser._id, existingUser, { new: true })
+     return this.userModel.findByIdAndUpdate(
+        existingUser._id,
+        { $addToSet: { games: favoriteGameUserDto.gameId } },
+        { new: true }
+    );
   }
 
   async getAllGamesUser(getAllGamesUserDto: GetAllGameUserDto) {
@@ -75,7 +77,7 @@ export class UserService {
     return existingUser.games
   }
 
-  async findByUserId(userId: string): Promise<User> {
+  async findByUserId(userId: string): Promise<IsUser> {
     const user = await this.userModel.findOne({ userId }).exec();
     return user;
   }
