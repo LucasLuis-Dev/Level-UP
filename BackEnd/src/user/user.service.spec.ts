@@ -184,7 +184,8 @@ describe('UserService', () => {
 
   describe('findByUserId', () => {
     it('should return a user by id', async () => {
-      jest.spyOn(userService, 'findByUserId').mockResolvedValue(mockUser);
+      // ✅ CORREÇÃO AQUI
+      jest.spyOn(userService, 'findByUserId').mockResolvedValue(mockUser as unknown as IsUser);
 
       const result = await userService.findByUserId(mockUser.userId);
 
@@ -195,6 +196,7 @@ describe('UserService', () => {
     it('should return not found when the id is invalid or the user does not exist', async () => {
       const invalidUserId = 'invalid-user-id';
 
+      // ✅ Null já funciona sem casting
       jest.spyOn(userService, 'findByUserId').mockResolvedValue(null);
 
       const result = await userService.findByUserId(invalidUserId);
